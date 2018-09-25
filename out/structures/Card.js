@@ -26,7 +26,7 @@ class Card {
             this.value = this.name.substring(0, this.name.indexOf(' '));
             this.suit = this.name.substring(this.name.indexOf('of ') + 3);
             this.worth = worths.get(this.value);
-            this.position = options.position ? options.position : null;
+            this.position = options.position !== undefined ? options.position : null;
             const keys = worths.keys();
             while (true) {
                 const next = keys.next();

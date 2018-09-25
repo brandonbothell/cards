@@ -16,9 +16,10 @@ class Deck {
         this.cards = [];
         const types = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king'];
         const suits = ['spades', 'hearts', 'diamonds', 'clubs'];
-        types.forEach((type, index) => {
-            suits.forEach((suit, index1) => {
-                this.cards.push(new _1.Card({ name: `${type} of ${suit}`, position: index + index1 }));
+        let pos = 0;
+        types.forEach((type) => {
+            suits.forEach((suit) => {
+                this.cards.push(new _1.Card({ name: `${type} of ${suit}`, position: pos++ }));
             });
         });
     }
@@ -55,6 +56,22 @@ class Deck {
         this.cards.splice(index, 1);
         this.size--;
         return card;
+    }
+    /**
+     * Shuffle the deck with Fisher-Yates algorithm.
+     */
+    shuffle(passes = 1) {
+        for (let p = 0; p <= passes; p++) {
+            for (let index = 0; index < this.cards.length; index++) {
+                const switchIndex = Math.floor(Math.random() * (index + 1));
+                const swap = this.cards[index];
+                this.cards[switchIndex].position = swap.position;
+                this.cards[index].position = switchIndex;
+                this.cards[index] = this.cards[switchIndex];
+                this.cards[switchIndex] = swap;
+            }
+            return this.cards;
+        }
     }
 }
 exports.Deck = Deck;

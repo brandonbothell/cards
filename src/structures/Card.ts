@@ -76,7 +76,7 @@ export class Card {
       this.value = this.name.substring(0, this.name.indexOf(' ')) as CardValue
       this.suit = this.name.substring(this.name.indexOf('of ') + 3) as CardSuit
       this.worth = worths.get(this.value) as CardWorth
-      this.position = options.position ? options.position : null
+      this.position = options.position !== undefined ? options.position : null
 
       const keys = worths.keys()
 

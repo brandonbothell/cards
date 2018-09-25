@@ -73,4 +73,17 @@ describe('Decks', () => {
     expect(deck.size).to.equal(51)
     expect(deck.cards.findIndex(card => card.name === 'ace of spades')).to.equal(-1)
   })
+
+  it('should shuffle cards correctly', () => {
+    const deck = new Deck()
+    const card1 = deck.cards[0]
+
+    expect(card1.position).to.equal(0)
+    deck.shuffle()
+
+    const card2 = deck.cards[0]
+
+    expect(card2.position).to.equal(0)
+    expect(card1.name).to.not.equal(card2.name)
+  })
 })

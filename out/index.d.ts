@@ -92,4 +92,9 @@ export class Deck {
    * @param card The card to remove from the deck.
    */
   public remove (card: Card): Card
+
+  /**
+   * Shuffle the deck with Fisher-Yates algorithm.
+   */
+  public shuffle (passes?: number): Card[]
 }
