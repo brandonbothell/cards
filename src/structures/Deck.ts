@@ -57,7 +57,7 @@ export class Deck {
    * @param card The card to remove from the deck.
    */
   public remove (card: Card) {
-    const index = this.cards.findIndex(value => card.suit === value.suit && card.value === value.value)
+    const index = card.position !== undefined ? card.position : this.cards.findIndex(value => card.suit === value.suit && card.value === value.value)
 
     if (index === -1) {
       return null
@@ -67,6 +67,19 @@ export class Deck {
     this.size--
 
     return card
+  }
+
+  /**
+   * Reinserts a previously removed card (or one initialized with a position)
+   * into the deck.
+   * @param card The card with a `position` property to reinsert to the deck.
+   */
+  public reinsert (card: Card) {
+    if (card.position === undefined || card.position === null) {
+      throw new Error('no position to reinsert with')
+    }
+
+    return this.insert(card, card.position)
   }
 
   /**

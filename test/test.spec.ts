@@ -86,4 +86,14 @@ describe('Decks', () => {
     expect(card2.position).to.equal(0)
     expect(card1.name).to.not.equal(card2.name)
   })
+
+  it('should reinsert cards correctly', () => {
+    const deck = new Deck()
+    const card = deck.cards[5]
+
+    deck.remove(card)
+    deck.reinsert(card)
+
+    expect(deck.cards[5]).to.equal(card)
+  })
 })

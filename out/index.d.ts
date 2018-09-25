@@ -94,6 +94,13 @@ export class Deck {
   public remove (card: Card): Card
 
   /**
+   * Reinserts a previously removed card (or one initialized with a position)
+   * into the deck.
+   * @param card The card with a `position` property to reinsert to the deck.
+   */
+  public reinsert (card: Card): Card
+
+  /**
    * Shuffle the deck with Fisher-Yates algorithm.
    */
   public shuffle (passes?: number): Card[]
